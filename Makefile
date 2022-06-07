@@ -5,6 +5,15 @@ init:
 test:
 	pytest tests
 
+snippets:
+# Replace file extension of all files in a folder
+	for file in *.html
+	do
+	mv "$file" "${file%.html}.txt"
+	done
+# Wget download all files from html index
+	wget -r -np -nH --cut-dirs=3 -R index.html <url>
+
 .PHONY: api
 api:
 	uvicorn app:app --port 5000 --reload
